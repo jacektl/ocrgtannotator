@@ -1,0 +1,26 @@
+<div class="mat-app-background">
+  <header>
+    <nav>
+      <mat-toolbar>
+        <mat-toolbar-row>
+          <span class="logo">OCR GT Annotator</span>
+          <a mat-button routerLink="/">Home</a>
+          <a mat-button *ngIf="auth.isLoggedIn()" routerLink="/logout">Logout</a>
+          <a mat-button *ngIf="auth.isLoggedOut()" routerLink="/login">Login</a>
+        </mat-toolbar-row>
+      </mat-toolbar>
+    </nav>
+  </header>
+  <div class="main-content">
+    <router-outlet></router-outlet>
+  </div>
+  <footer>
+    <mat-toolbar>
+      <mat-toolbar-row>
+        <div class="fill"></div>
+        <a routerLink="/imprint">Imprint</a>
+        <div class="fill"></div>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </footer>
+</div>

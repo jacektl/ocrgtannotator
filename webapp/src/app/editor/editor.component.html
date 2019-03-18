@@ -1,0 +1,15 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <app-breadcrumb [label]="(datasetCom | async).label"
+                    [children]="(datasetCom | async).children"
+                    (change)="onChange($event)"
+    ></app-breadcrumb>
+  </mat-toolbar-row>
+</mat-toolbar>
+<h1>Edit ground truth</h1>
+<div *ngFor="let d of (datasetCom | async).files" class="entry">
+  <app-secured-image #lineImg [src]="resourceUrl(d)" [alt]="resourceUrl(d)" class="gt-line-img"></app-secured-image>
+  <mat-form-field class="full-width">
+    <input matInput placeholder="Enter ground truth" value="" autocomplete="off">
+  </mat-form-field>
+</div>

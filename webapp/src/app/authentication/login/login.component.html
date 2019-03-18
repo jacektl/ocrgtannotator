@@ -1,0 +1,20 @@
+<div class="center-content-container">
+  <h1>Login</h1>
+  <p>{{ error }}</p>
+  <form [formGroup]="form">
+    <mat-form-field>
+      <input matInput class="form-control" formControlName="username" placeholder="Username">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput class="form-control" formControlName="password" placeholder="Password"
+             type="password">
+    </mat-form-field>
+
+    <mat-toolbar class="light">
+      <mat-toolbar-row>
+        <button mat-flat-button color="primary" (click)="login()">Login</button>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </form>
+</div>

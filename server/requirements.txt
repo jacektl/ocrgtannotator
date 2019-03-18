@@ -1,0 +1,4 @@
+django>2
+djangorestframework
+djangorestframework-jwt
+djangorestframework-stubs

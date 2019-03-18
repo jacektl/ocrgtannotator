@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block body %}
+    <app-root>
+        <div class="screen-center">
+            <h1>ommr4all</h1>
+            <div class="loader">
+                <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+            </div>
+            <h4>Loading ...</h4>
+        </div>
+    </app-root>
+
+    <script type="text/javascript" src="{% static 'webapp/runtime.js' %}"></script>
+    <script type="text/javascript" src="{% static 'webapp/polyfills.js' %}"></script>
+    <script type="text/javascript" src="{% static 'webapp/styles.js' %}"></script>
+    <script type="text/javascript" src="{% static 'webapp/vendor.js' %}"></script>
+    <script type="text/javascript" src="{% static 'webapp/main.js' %}"></script>
+
+{% endblock %}

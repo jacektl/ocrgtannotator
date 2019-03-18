@@ -1,9 +1,14 @@
 .gt-line-img {
-  height: 2rem;
+  height: 1.5rem;
+  max-width: 100%;
 }
 
-.full-width {
+::ng-deep .full-width {
   width: 100%;
+}
+
+::ng-deep input.finished {
+  color: limegreen;
 }
 
 .entry {

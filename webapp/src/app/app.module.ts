@@ -16,6 +16,7 @@ import { EditorComponent } from './editor/editor.component';
 import {SecuredImageComponent} from './common/secured-image/secured-image.component';
 import {SecuredSvgImageComponent} from './common/secured-svg-image/secured-svg-image.component';
 import { BreadcrumbComponent } from './editor/breadcrumb/breadcrumb.component';
+import { TextEditorComponent } from './editor/line-editors/text-editor/text-editor.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -34,6 +35,7 @@ const appRoutes: Routes = [
     SecuredImageComponent,
     SecuredSvgImageComponent,
     BreadcrumbComponent,
+    TextEditorComponent,
   ],
   imports: [
     BrowserModule,

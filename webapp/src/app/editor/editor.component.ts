@@ -19,6 +19,8 @@ export class DatasetCom {
 export class EditorComponent implements OnInit {
   datasetCom = new BehaviorSubject<DatasetCom>(new DatasetCom());
 
+  basename = (s: string) => { return s.split('.')[0]; }
+
   constructor(
     private http: HttpClient,
   ) { }

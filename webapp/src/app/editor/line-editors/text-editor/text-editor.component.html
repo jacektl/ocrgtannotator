@@ -1,0 +1,3 @@
+<mat-form-field class="full-width">
+  <input matInput placeholder="Enter ground truth" [(ngModel)]="content" autocomplete="off" [class.finished]="corrected" (blur)="onChange($event)">
+</mat-form-field>

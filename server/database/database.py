@@ -2,6 +2,10 @@ from server.settings import PRIVATE_MEDIA_ROOT, PRIVATE_MEDIA_URL, BASE_DIR
 import os
 from typing import List
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 class Database:
     @staticmethod
@@ -34,3 +38,30 @@ class Database:
 
     def list_files(self, ext_match: List[str]):
         return sorted([f for f in os.listdir(self.local_path()) if os.path.isfile(self.local_path(f)) and any([f.endswith(ext) for ext in ext_match])])
+
+    def file(self, name: str, ext: str):
+        return DatasetFile(self, name, ext)
+
+
+class DatasetFile:
+    def __init__(self, dataset: Database, name: str, ext: str):
+        self.dataset = dataset
+        self.name = name
+        self.ext = ext
+        self.local_path = self.dataset.local_path(self.name + self.ext)
+        logger.debug("Access file {}".format(self.local_path))
+
+    def remove(self):
+        os.remove(self.local_path)
+
+    def exists(self):
+        return os.path.exists(self.local_path)
+
+    def get_or_create_content(self):
+        with open(self.local_path, 'r') as f:
+            return f.read()
+
+    def set_content(self, s: str):
+        with open(self.local_path, 'w') as f:
+            f.write(s)
+

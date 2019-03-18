@@ -4,7 +4,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
 
-from restapi.api.dataset import DatasetView
+from restapi.api.dataset import DatasetView, LineView
 from server.settings import PRIVATE_MEDIA_ROOT, PRIVATE_MEDIA_URL, BASE_DIR
 
 import logging
@@ -33,8 +33,8 @@ urlpatterns = \
         path('token-verify/', verify_jwt_token),
 
         # data
-        re_path(r'^data/(?P<label>\.*)$', DatasetView.as_view()),
-        re_path(r'^data/(?P<label>\.*)$', DatasetView.as_view()),
+        re_path(r'^data/$', DatasetView.as_view()),
+        re_path(r'^line/$', LineView.as_view()),
 
         re_path(r'^content/$', get_content)
 

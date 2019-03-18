@@ -9,7 +9,5 @@
 <h1>Edit ground truth</h1>
 <div *ngFor="let d of (datasetCom | async).files" class="entry">
   <app-secured-image #lineImg [src]="resourceUrl(d)" [alt]="resourceUrl(d)" class="gt-line-img"></app-secured-image>
-  <mat-form-field class="full-width">
-    <input matInput placeholder="Enter ground truth" value="" autocomplete="off">
-  </mat-form-field>
+  <app-text-editor class="full-width" [path]="(datasetCom | async).label" [file]="basename(d)"></app-text-editor>
 </div>

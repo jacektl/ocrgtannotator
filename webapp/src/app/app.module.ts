@@ -6,7 +6,15 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {LoginComponent} from './authentication/login/login.component';
 import {LogoutComponent} from './authentication/logout/logout.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule, MatSelectModule, MatToolbarModule} from '@angular/material';
+import {
+  MatButtonModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatInputModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatToolbarModule
+} from '@angular/material';
 import {RouterModule, Routes} from '@angular/router';
 import {ImprintComponent} from './imprint/imprint.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
@@ -16,7 +24,11 @@ import { EditorComponent } from './editor/editor.component';
 import {SecuredImageComponent} from './common/secured-image/secured-image.component';
 import {SecuredSvgImageComponent} from './common/secured-svg-image/secured-svg-image.component';
 import { BreadcrumbComponent } from './editor/breadcrumb/breadcrumb.component';
-import { TextEditorComponent } from './editor/line-editors/text-editor/text-editor.component';
+import { TextEditorComponent } from './editor/line-editor/text-editor/text-editor.component';
+import { LineEditorComponent } from './editor/line-editor/line-editor.component';
+import { VirtualKeyboardComponent } from './editor/virtual-keyboard/virtual-keyboard.component';
+import { TextViewComponent } from './editor/line-editor/text-view/text-view.component';
+import { TypographyEditorComponent } from './editor/line-editor/typography-editor/typography-editor.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -36,6 +48,10 @@ const appRoutes: Routes = [
     SecuredSvgImageComponent,
     BreadcrumbComponent,
     TextEditorComponent,
+    LineEditorComponent,
+    VirtualKeyboardComponent,
+    TextViewComponent,
+    TypographyEditorComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +64,7 @@ const appRoutes: Routes = [
     MatInputModule,
     MatIconModule,
     MatSelectModule,
+    MatSidenavModule,
     ReactiveFormsModule,
     RouterModule.forRoot(
       appRoutes,

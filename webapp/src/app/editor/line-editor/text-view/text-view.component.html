@@ -1,0 +1,6 @@
+<div>
+  <span *ngFor="let wc of toWordChars();" [class.char-highlighted]="wc.c" [class.word-highlighted]="wc.w"
+        [innerHTML]="wc.text"
+  >
+  </span>
+</div>

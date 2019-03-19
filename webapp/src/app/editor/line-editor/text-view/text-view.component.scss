@@ -1,0 +1,12 @@
+span {
+  display: inline-block;
+}
+
+.char-highlighted,
+.word-highlighted.char-highlighted {
+  color: dodgerblue;
+}
+
+.word-highlighted {
+  color: orange;
+}

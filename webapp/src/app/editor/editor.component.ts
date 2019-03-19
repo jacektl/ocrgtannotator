@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject} from 'rxjs';
+import {EditorService} from './editor.service';
+import {VirtualKeyboardComponent} from './virtual-keyboard/virtual-keyboard.component';
 
 export class DatasetCom {
   constructor(
@@ -19,13 +21,15 @@ export class DatasetCom {
 export class EditorComponent implements OnInit {
   datasetCom = new BehaviorSubject<DatasetCom>(new DatasetCom());
 
-  basename = (s: string) => { return s.split('.')[0]; }
+  @ViewChild(VirtualKeyboardComponent) virtualKeyboard: VirtualKeyboardComponent;
 
   constructor(
     private http: HttpClient,
+    private service: EditorService,
   ) { }
 
   ngOnInit() {
+    this.service.virtualKeyboard = this.virtualKeyboard;
     this.onChange('');
   }
 
@@ -34,10 +38,6 @@ export class EditorComponent implements OnInit {
       data => { this.datasetCom.next(data as DatasetCom); console.log(data); }
     );
 
-  }
-
-  resourceUrl(s: string) {
-    return '/api/content?path=' + encodeURIComponent(this.datasetCom.getValue().label + '/' + s);
   }
 
 }

@@ -1,0 +1,7 @@
+<table (mousedown)="mouseDown($event)">
+  <tr *ngFor="let line of virtualKeyboard.lines" class="line">
+    <td *ngFor="let k of line.keys" class="cell">
+      <button mat-flat-button (click)="key.emit(k)" (mousedown)="mouseDown($event)">{{ k }}</button>
+    </td>
+  </tr>
+</table>

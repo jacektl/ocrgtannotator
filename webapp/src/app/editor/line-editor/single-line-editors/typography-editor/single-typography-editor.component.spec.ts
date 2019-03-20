@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TypographyEditorComponent } from './typography-editor.component';
+import { SingleTypographyEditorComponent } from './single-typography-editor.component';
 
-describe('TypographyEditorComponent', () => {
-  let component: TypographyEditorComponent;
-  let fixture: ComponentFixture<TypographyEditorComponent>;
+describe('SingleTypographyEditorComponent', () => {
+  let component: SingleTypographyEditorComponent;
+  let fixture: ComponentFixture<SingleTypographyEditorComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TypographyEditorComponent ]
+      declarations: [ SingleTypographyEditorComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TypographyEditorComponent);
+    fixture = TestBed.createComponent(SingleTypographyEditorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

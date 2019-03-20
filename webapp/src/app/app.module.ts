@@ -24,12 +24,14 @@ import { EditorComponent } from './editor/editor.component';
 import {SecuredImageComponent} from './common/secured-image/secured-image.component';
 import {SecuredSvgImageComponent} from './common/secured-svg-image/secured-svg-image.component';
 import { BreadcrumbComponent } from './editor/breadcrumb/breadcrumb.component';
-import { TextEditorComponent } from './editor/line-editor/text-editor/text-editor.component';
+import { TextEditorComponent } from './editor/line-editor/single-line-editors/text-editor/text-editor.component';
 import { LineEditorComponent } from './editor/line-editor/line-editor.component';
 import { VirtualKeyboardComponent } from './editor/virtual-keyboard/virtual-keyboard.component';
-import { TextViewComponent } from './editor/line-editor/text-view/text-view.component';
-import { TypographyEditorComponent } from './editor/line-editor/typography-editor/typography-editor.component';
+import { TextViewComponent } from './editor/line-editor/single-line-editors/text-view/text-view.component';
+import { SingleTypographyEditorComponent } from './editor/line-editor/single-line-editors/typography-editor/single-typography-editor.component';
 import { SiblingSelectorComponent } from './editor/sibling-selector/sibling-selector.component';
+import { SimpleTypographyEditorComponent } from './editor/line-editor/line-editors/simple-typography-editor/simple-typography-editor.component';
+import { OcrEditorComponent } from './editor/line-editor/line-editors/ocr-editor/ocr-editor.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -52,8 +54,10 @@ const appRoutes: Routes = [
     LineEditorComponent,
     VirtualKeyboardComponent,
     TextViewComponent,
-    TypographyEditorComponent,
+    SingleTypographyEditorComponent,
     SiblingSelectorComponent,
+    SimpleTypographyEditorComponent,
+    OcrEditorComponent,
   ],
   imports: [
     BrowserModule,

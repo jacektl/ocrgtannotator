@@ -1,8 +1,8 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {EditorService} from '../../editor.service';
+import {EditorService} from '../../../editor.service';
 import {Subscription} from 'rxjs';
-import {Sentence} from '../../../common/sentence';
+import {Sentence} from '../../../../common/sentence';
 import {FormControl} from '@angular/forms';
 
 @Component({
@@ -93,6 +93,7 @@ export class TextEditorComponent implements OnInit, OnDestroy {
 
   inputChanged(e) {
     this.updateSentence(this.content);
+    this.corrected = false;
   }
 
   keydown(e: KeyboardEvent) {

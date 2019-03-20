@@ -1,0 +1,3 @@
+<app-secured-image [src]="resourceUrl(file)" [alt]="resourceUrl(file)" class="gt-line-img"></app-secured-image>
+<app-text-view [sentence]="sentence" [charHighlightIdx]="typographyEditor.charHighlightPos" [wordHightlightIds]="typographyEditor.wordHighlightPos"></app-text-view>
+<app-single-typography-editor class="full-width" [path]="datasetCom.path" [file]="basename(file)" [ext]="'.typo.txt'" [targetSentence]="sentence"></app-single-typography-editor>

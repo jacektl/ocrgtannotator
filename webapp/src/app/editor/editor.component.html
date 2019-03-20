@@ -5,6 +5,12 @@
                     (change)="onChange($event)"
     ></app-breadcrumb>
     <div class="fill"></div>
+    <mat-form-field>
+      <mat-select [(ngModel)]="viewSelect">
+        <mat-option [value]="'ocr'">OCR</mat-option>
+        <mat-option [value]="'typo'">Typo</mat-option>
+      </mat-select>
+    </mat-form-field>
     <app-sibling-selector [labels]="(datasetCom | async).siblings" [currentLabel]="(datasetCom | async).label"
                           (change)="changeToSibling($event)"
     ></app-sibling-selector>
@@ -17,7 +23,8 @@
   <mat-sidenav-content>
     <h1>Edit ground truth</h1>
     <div *ngFor="let d of (datasetCom | async).files" class="entry">
-      <app-line-editor [datasetCom]="datasetCom | async" [file]="d"></app-line-editor>
+      <app-ocr-editor *ngIf="viewSelect === 'ocr'" [datasetCom]="datasetCom | async" [file]="d"></app-ocr-editor>
+      <app-simple-typography-editor *ngIf="viewSelect === 'typo'" [datasetCom]="datasetCom | async" [file]="d"></app-simple-typography-editor>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

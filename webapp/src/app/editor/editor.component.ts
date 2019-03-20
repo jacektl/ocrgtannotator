@@ -25,6 +25,7 @@ export class DatasetCom {
 })
 export class EditorComponent implements OnInit {
   datasetCom = new BehaviorSubject<DatasetCom>(new DatasetCom());
+  viewSelect = 'ocr';
 
   @ViewChild(VirtualKeyboardComponent) virtualKeyboard: VirtualKeyboardComponent;
 

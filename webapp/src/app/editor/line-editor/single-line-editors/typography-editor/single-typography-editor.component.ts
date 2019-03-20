@@ -18,21 +18,31 @@ export class TypoErrorStateMatcher implements ErrorStateMatcher {
 
 
 @Component({
-  selector: 'app-typography-editor',
-  templateUrl: './typography-editor.component.html',
-  styleUrls: ['./typography-editor.component.scss'],
+  selector: 'app-single-typography-editor',
+  templateUrl: './single-typography-editor.component.html',
+  styleUrls: ['./single-typography-editor.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TypographyEditorComponent extends TextEditorComponent {
+export class SingleTypographyEditorComponent extends TextEditorComponent {
   @Input() typographyChars = 'fgFG';
   @Input() targetSentence = new Sentence('');
 
   errorStateMatcher = new TypoErrorStateMatcher();
 
-  validator = (control: FormControl) => {
+  lengthValidator = (control: FormControl) => {
     const value = control.value as string;
     if (value.length !== this.targetSentence.text.length) {
       return {length: value.length};
+    }
+    return null;
+  };
+
+  invalidCharsValidator = (control: FormControl) => {
+    const value = control.value as string;
+    for (const c of value) {
+      if (this.typographyChars.indexOf(c) < 0 && this.targetSentence.separators.indexOf(c) < 0) {
+        return {invalidCharacter: c};
+      }
     }
     return null;
   };
@@ -43,7 +53,7 @@ export class TypographyEditorComponent extends TextEditorComponent {
     protected changeDetector: ChangeDetectorRef,
   ) {
     super(http, editor, changeDetector);
-    this.inputFormControl = new FormControl('', [this.validator]);
+    this.inputFormControl = new FormControl('', [this.lengthValidator, this.invalidCharsValidator]);
   }
 
   keydown(e: KeyboardEvent) {

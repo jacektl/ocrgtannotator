@@ -1,5 +1,6 @@
 <mat-form-field class="full-width">
-  <input #input matInput placeholder="Enter ground truth" autocomplete="off" [class.finished]="corrected"
+  <input #input matInput
+         autocomplete="off"
          (blur)="onBlur($event)"
          (focus)="onFocus($event)"
          (keydown)="keydown($event)"
@@ -7,4 +8,5 @@
          (input)="inputChanged($event)"
          [formControl]="inputFormControl"
   >
+  <mat-icon *ngIf="corrected" matSuffix>check</mat-icon>
 </mat-form-field>

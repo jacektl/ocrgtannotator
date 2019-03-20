@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
-import {Sentence} from '../../../common/sentence';
+import {Sentence} from '../../../../common/sentence';
 
 @Component({
   selector: 'app-text-view',

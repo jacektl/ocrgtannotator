@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {EditorService} from '../../editor.service';
 import {Subscription} from 'rxjs';
 import {Sentence} from '../../../common/sentence';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-text-editor',
@@ -20,10 +21,19 @@ export class TextEditorComponent implements OnInit, OnDestroy {
   strgPressed = false;
   focussed = false;
 
+  inputFormControl = new FormControl('', []);
+
   private focusSubscriptions = new Subscription();
-  private _content = '';
-  get content() { return this._content; }
-  set content(s: string) { if (this._content !== s) { this._content = s; this.updateSentence(this._content); this.corrected = false; }}
+  get content(): string { return this.inputFormControl.value; }
+  set content(s: string) {
+    if (this.content !== s) {
+      this.inputFormControl.updateValueAndValidity();
+      this.inputFormControl.setValue(s);
+      this.updateSentence(this.content);
+      this.corrected = false;
+    }
+  }
+
   corrected = false;
 
   private _sentence = new Sentence('');
@@ -101,13 +111,13 @@ export class TextEditorComponent implements OnInit, OnDestroy {
 
     const front = (input.value).substring(0, caretPos);
     const back = (input.value).substring(input.selectionEnd, input.value.length);
-    input.value = front + text + back;
+    const value = front + text + back;
     caretPos = caretPos + text.length;
     input.selectionStart = caretPos;
     input.selectionEnd = caretPos;
     input.focus();
     input.scrollTop = scrollPos;
-    this.content = input.value;
+    this.content = value;
     this.changeDetector.markForCheck();
   }
 }

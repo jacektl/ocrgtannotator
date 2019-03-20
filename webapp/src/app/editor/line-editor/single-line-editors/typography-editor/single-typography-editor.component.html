@@ -1,0 +1,11 @@
+<mat-form-field class="full-width">
+  <input #input matInput placeholder="Enter ground truth" autocomplete="off" [class.finished]="corrected"
+         (blur)="onBlur($event)"
+         (focus)="onFocus($event)"
+         (keydown)="keydown($event)"
+         (keyup)="keyup($event)"
+         [formControl]="inputFormControl"
+         [errorStateMatcher]="errorStateMatcher"
+  >
+  <mat-error *ngIf="inputFormControl.hasError('length')">Length does not match</mat-error>
+</mat-form-field>

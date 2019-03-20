@@ -24,7 +24,7 @@ export class LineEditorComponent implements OnInit {
   }
 
   resourceUrl(s: string) {
-    return '/api/content?path=' + encodeURIComponent(this.datasetCom.label + '/' + s);
+    return '/api/content?path=' + encodeURIComponent(this.datasetCom.path + '/' + s);
   }
 
 

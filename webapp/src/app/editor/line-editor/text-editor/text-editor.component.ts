@@ -17,10 +17,13 @@ export class TextEditorComponent implements OnInit, OnDestroy {
 
   @ViewChild('input') input: ElementRef;
 
+  strgPressed = false;
+  focussed = false;
+
   private focusSubscriptions = new Subscription();
   private _content = '';
   get content() { return this._content; }
-  set content(s: string) { this._content = s; this.updateSentence(this._content); }
+  set content(s: string) { if (this._content !== s) { this._content = s; this.updateSentence(this._content); this.corrected = false; }}
   corrected = false;
 
   private _sentence = new Sentence('');
@@ -30,9 +33,6 @@ export class TextEditorComponent implements OnInit, OnDestroy {
       this._sentence = new Sentence(s);
     }
   }
-
-  strgPressed = false;
-  focussed = false;
 
   get wordHighlightPos() { return this.strgPressed || !this.focussed ? -1 : this.caretPos; }
   get charHighlightPos() { return !this.focussed ? -1 : this.caretPos; }

@@ -33,7 +33,7 @@ export class TypographyEditorComponent extends TextEditorComponent {
         if (!word.isSeparator) {
           const remLength = word.endIdx - this.caretPos;
           // fill word and add separator
-          this.insertAtCaret(e.key.repeat(Math.max(1, remLength)) + this.targetSentence.wordAt(word.endIdx).text);
+          this.insertAtCaret(e.key.repeat(Math.max(0, remLength)) + this.targetSentence.wordAt(word.endIdx).text);
         }
       }
       e.preventDefault();

@@ -1,7 +1,7 @@
 <ng-container *ngFor="let b of breadcrumbs()">
-  <a mat-button (click)="change.emit(b.path)">{{ b.label }}</a>
+  <a mat-button (click)="changeToLabel(b.path)">{{ b.label }}</a>
   <span>/</span>
 </ng-container>
-<mat-select *ngIf="children.length > 0" (selectionChange)="change.emit($event.value)" [(value)]="value">
-  <mat-option *ngFor="let c of children" [value]="c">{{ c }}</mat-option>
+<mat-select *ngIf="children.length > 0" (selectionChange)="changeToLabel($event.value)" [(value)]="value">
+  <mat-option *ngFor="let c of childrenBreadcrumbs" [value]="c.path">{{ c.label }}</mat-option>
 </mat-select>

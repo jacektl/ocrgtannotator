@@ -10,7 +10,7 @@ import {
   MatButtonModule,
   MatFormFieldModule,
   MatIconModule,
-  MatInputModule,
+  MatInputModule, MatPaginatorModule,
   MatSelectModule,
   MatSidenavModule,
   MatToolbarModule
@@ -29,6 +29,7 @@ import { LineEditorComponent } from './editor/line-editor/line-editor.component'
 import { VirtualKeyboardComponent } from './editor/virtual-keyboard/virtual-keyboard.component';
 import { TextViewComponent } from './editor/line-editor/text-view/text-view.component';
 import { TypographyEditorComponent } from './editor/line-editor/typography-editor/typography-editor.component';
+import { SiblingSelectorComponent } from './editor/sibling-selector/sibling-selector.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -52,6 +53,7 @@ const appRoutes: Routes = [
     VirtualKeyboardComponent,
     TextViewComponent,
     TypographyEditorComponent,
+    SiblingSelectorComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,6 +67,7 @@ const appRoutes: Routes = [
     MatIconModule,
     MatSelectModule,
     MatSidenavModule,
+    MatPaginatorModule,
     ReactiveFormsModule,
     RouterModule.forRoot(
       appRoutes,

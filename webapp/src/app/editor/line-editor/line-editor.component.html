@@ -1,4 +1,4 @@
 <app-secured-image [src]="resourceUrl(file)" [alt]="resourceUrl(file)" class="gt-line-img"></app-secured-image>
 <app-text-view [sentence]="textEditor.sentence" [charHighlightIdx]="typographyEditor.charHighlightPos" [wordHightlightIds]="typographyEditor.wordHighlightPos"></app-text-view>
-<app-text-editor class="full-width" [path]="datasetCom.label" [file]="basename(file)"></app-text-editor>
-<app-typography-editor class="full-width" [path]="datasetCom.label" [file]="basename(file)" [ext]="'.typo.txt'" [targetSentence]="textEditor.sentence"></app-typography-editor>
+<app-text-editor class="full-width" [path]="datasetCom.path" [file]="basename(file)"></app-text-editor>
+<app-typography-editor class="full-width" [path]="datasetCom.path" [file]="basename(file)" [ext]="'.typo.txt'" [targetSentence]="textEditor.sentence"></app-typography-editor>

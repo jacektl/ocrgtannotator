@@ -1,0 +1,7 @@
+<button mat-icon-button (click)="onPrev()"><mat-icon>chevron_left</mat-icon></button>
+<mat-form-field>
+<mat-select [(ngModel)]="currentLabel" (selectionChange)="onChanged($event)">
+  <mat-option *ngFor="let label of labels" [value]="label">{{ label }}</mat-option>
+</mat-select>
+</mat-form-field>
+<button mat-icon-button (click)="onNext()"><mat-icon>chevron_right</mat-icon></button>

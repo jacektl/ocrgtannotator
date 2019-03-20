@@ -17,7 +17,8 @@ class Database:
         return [Database(name) for name in os.listdir(PRIVATE_MEDIA_ROOT)]
 
     def __init__(self, path):
-        self.breadcrumb = path.split('/')
+        self.parent = os.path.join(path, os.pardir)
+        self.breadcrumb = [p for p in path.split('/') if len(p) > 0]
 
     def local_path(self, sub=''):
         return os.path.join(PRIVATE_MEDIA_ROOT, *self.breadcrumb, sub)
@@ -27,14 +28,23 @@ class Database:
 
     def to_json(self, ext_match: List[str]):
         return {
-            'label': "/".join(self.breadcrumb),
-            'path': self.remote_path(),
+            'label': '' if len(self.breadcrumb) == 0 else self.breadcrumb[-1],
+            'path': "/".join(self.breadcrumb),
+            'remote_path': self.remote_path(),
             'children': self.list_child_dirs(),
+            'siblings': self.list_sibling_dirs(),
             'files': self.list_files(ext_match),
+            'parent': self.parent,
         }
 
     def list_child_dirs(self):
         return sorted([d for d in os.listdir(self.local_path()) if os.path.isdir(self.local_path(d))])
+
+    def list_sibling_dirs(self):
+        if len(self.breadcrumb) == 0 or len(self.breadcrumb[0]) == 0:
+            return []
+        pardir = os.path.join(self.local_path(), os.pardir)
+        return sorted([d for d in os.listdir(pardir) if os.path.isdir(os.path.join(pardir, d))])
 
     def list_files(self, ext_match: List[str]):
         return sorted([f for f in os.listdir(self.local_path()) if os.path.isfile(self.local_path(f)) and any([f.endswith(ext) for ext in ext_match])])
@@ -59,7 +69,7 @@ class DatasetFile:
 
     def get_or_create_content(self):
         with open(self.local_path, 'r') as f:
-            return f.read()
+            return f.read().strip()
 
     def set_content(self, s: str):
         with open(self.local_path, 'w') as f:

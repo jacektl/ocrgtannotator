@@ -1,9 +1,13 @@
 <mat-toolbar>
   <mat-toolbar-row>
-    <app-breadcrumb [label]="(datasetCom | async).label"
+    <app-breadcrumb [path]="(datasetCom | async).path"
                     [children]="(datasetCom | async).children"
                     (change)="onChange($event)"
     ></app-breadcrumb>
+    <div class="fill"></div>
+    <app-sibling-selector [labels]="(datasetCom | async).siblings" [currentLabel]="(datasetCom | async).label"
+                          (change)="changeToSibling($event)"
+    ></app-sibling-selector>
   </mat-toolbar-row>
 </mat-toolbar>
 <mat-sidenav-container>

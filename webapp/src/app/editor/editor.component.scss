@@ -1,5 +1,6 @@
-.gt-line-img {
-  height: 1.5rem;
+::ng-deep .gt-line-img {
+  height: 1.15rem;
+  max-height: 1.15rem;
   max-width: 100%;
 }
 
@@ -11,10 +12,12 @@
   color: limegreen;
 }
 
-.entry {
+mat-card {
   display: flex;
   flex-direction: column;
-  border-left: 2px solid black;
   margin: 1rem;
-  padding-left: 1rem;
+}
+
+.container {
+  height: calc(100vh - 18px);
 }

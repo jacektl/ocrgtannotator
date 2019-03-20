@@ -7,7 +7,7 @@ import {LoginComponent} from './authentication/login/login.component';
 import {LogoutComponent} from './authentication/logout/logout.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
-  MatButtonModule,
+  MatButtonModule, MatCardModule,
   MatFormFieldModule,
   MatIconModule,
   MatInputModule, MatPaginatorModule,
@@ -68,6 +68,7 @@ const appRoutes: Routes = [
     MatFormFieldModule,
     MatButtonModule,
     MatInputModule,
+    MatCardModule,
     MatIconModule,
     MatSelectModule,
     MatSidenavModule,

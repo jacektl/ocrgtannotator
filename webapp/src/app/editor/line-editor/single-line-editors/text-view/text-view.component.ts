@@ -11,6 +11,7 @@ export class TextViewComponent implements OnInit {
   @Input() sentence = new Sentence('');
   @Input() charHighlightIdx = -1;
   @Input() wordHightlightIds = -1;
+  @Input() font = '';
 
   toWordChars(): Array<{text: string, w: boolean, c: boolean}> {
     if (this.charHighlightIdx < 0 && this.wordHightlightIds) {

@@ -2,6 +2,7 @@ import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges,
 import {LineEditorComponent} from '../../line-editor.component';
 import {Sentence} from '../../../../common/sentence';
 import {HttpClient} from '@angular/common/http';
+import {EditorService} from '../../../editor.service';
 
 @Component({
   selector: 'app-simple-typography-editor',
@@ -17,7 +18,10 @@ export class SimpleTypographyEditorComponent extends LineEditorComponent impleme
   constructor(
     private http: HttpClient,
     private changeDetector: ChangeDetectorRef,
-  ) { super(); }
+    protected editor: EditorService,
+  ) {
+    super(editor);
+  }
 
   ngOnInit() {
     this.reload();

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {VirtualKeyboardComponent} from './virtual-keyboard/virtual-keyboard.component';
+import {VirtualKeyboardComponent} from '../common/virtual-keyboard/virtual-keyboard.component';
 
 @Injectable({
   providedIn: 'root'

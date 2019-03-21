@@ -1,5 +1,6 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 import {LineEditorComponent} from '../../line-editor.component';
+import {EditorService} from '../../../editor.service';
 
 @Component({
   selector: 'app-ocr-editor',
@@ -8,8 +9,9 @@ import {LineEditorComponent} from '../../line-editor.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OcrEditorComponent extends LineEditorComponent implements OnInit {
-
-  constructor() { super(); }
+  constructor(
+    protected editor: EditorService,
+  ) { super(editor); }
 
   ngOnInit() {
   }

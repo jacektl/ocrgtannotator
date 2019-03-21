@@ -21,7 +21,7 @@ class Database:
         self.breadcrumb = [p for p in path.split('/') if len(p) > 0]
 
     def local_path(self, sub=''):
-        return os.path.join(PRIVATE_MEDIA_ROOT, *self.breadcrumb, sub)
+        return os.path.join(PRIVATE_MEDIA_ROOT, 'data', *self.breadcrumb, sub)
 
     def remote_path(self):
         return os.path.join(PRIVATE_MEDIA_URL, *self.breadcrumb)

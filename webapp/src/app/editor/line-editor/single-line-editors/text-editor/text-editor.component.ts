@@ -15,6 +15,7 @@ export class TextEditorComponent implements OnInit, OnDestroy {
   @Input() path = '';
   @Input() file = '';
   @Input() ext = '.gt.txt';
+  @Input() font = '';
 
   @ViewChild('input') input: ElementRef;
 
@@ -72,7 +73,7 @@ export class TextEditorComponent implements OnInit, OnDestroy {
   }
 
   onFocus() {
-    this.focusSubscriptions.add(this.editor.virtualKeyboard.key.subscribe(
+    this.focusSubscriptions.add(this.editor.virtualKeyboard.buttonClicked.subscribe(
       k => this.insertAtCaret(k)
     ));
     this.focussed = true;

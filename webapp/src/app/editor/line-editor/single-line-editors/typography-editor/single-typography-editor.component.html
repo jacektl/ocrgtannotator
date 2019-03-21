@@ -8,6 +8,7 @@
          (input)="corrected = false"
          [formControl]="inputFormControl"
          [errorStateMatcher]="errorStateMatcher"
+         [style.font-family]="font"
   >
   <mat-icon *ngIf="corrected" matSuffix>check</mat-icon>
   <mat-error *ngIf="inputFormControl.hasError('length')">Length does not match</mat-error>

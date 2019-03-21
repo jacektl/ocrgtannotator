@@ -26,12 +26,13 @@ import {SecuredSvgImageComponent} from './common/secured-svg-image/secured-svg-i
 import { BreadcrumbComponent } from './editor/breadcrumb/breadcrumb.component';
 import { TextEditorComponent } from './editor/line-editor/single-line-editors/text-editor/text-editor.component';
 import { LineEditorComponent } from './editor/line-editor/line-editor.component';
-import { VirtualKeyboardComponent } from './editor/virtual-keyboard/virtual-keyboard.component';
 import { TextViewComponent } from './editor/line-editor/single-line-editors/text-view/text-view.component';
 import { SingleTypographyEditorComponent } from './editor/line-editor/single-line-editors/typography-editor/single-typography-editor.component';
 import { SiblingSelectorComponent } from './editor/sibling-selector/sibling-selector.component';
 import { SimpleTypographyEditorComponent } from './editor/line-editor/line-editors/simple-typography-editor/simple-typography-editor.component';
 import { OcrEditorComponent } from './editor/line-editor/line-editors/ocr-editor/ocr-editor.component';
+import {VirtualKeyboardComponent} from './common/virtual-keyboard/virtual-keyboard.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -73,6 +74,7 @@ const appRoutes: Routes = [
     MatSelectModule,
     MatSidenavModule,
     MatPaginatorModule,
+    DragDropModule,
     ReactiveFormsModule,
     RouterModule.forRoot(
       appRoutes,

@@ -23,7 +23,7 @@ export class TypoErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./single-typography-editor.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SingleTypographyEditorComponent extends TextEditorComponent {
+export class SingleTypographyEditorComponent extends TextEditorComponent implements OnInit {
   @Input() typographyChars = 'fgFG';
   @Input() targetSentence = new Sentence('');
 
@@ -54,6 +54,10 @@ export class SingleTypographyEditorComponent extends TextEditorComponent {
   ) {
     super(http, editor, changeDetector);
     this.inputFormControl = new FormControl('', [this.lengthValidator, this.invalidCharsValidator]);
+  }
+
+  ngOnInit() {
+    super.ngOnInit();
   }
 
   keydown(e: KeyboardEvent) {

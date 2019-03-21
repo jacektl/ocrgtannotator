@@ -5,6 +5,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
 
 from restapi.api.dataset import DatasetView, LineView
+from restapi.api.virtualkeyboard import VirtualKeyboardView, ListVirtualKeyboardView
 from server.settings import PRIVATE_MEDIA_ROOT, PRIVATE_MEDIA_URL, BASE_DIR
 
 import logging
@@ -23,7 +24,7 @@ def protected_serve(request, path, document_root=None, show_indexes=False):
 @permission_classes((IsAuthenticated, ))
 def get_content(request):
     print(os.path.join(PRIVATE_MEDIA_ROOT, request.GET['path']))
-    return protected_serve(request._request, os.path.join(PRIVATE_MEDIA_ROOT, request.GET['path']), "/", False)
+    return protected_serve(request._request, os.path.join(PRIVATE_MEDIA_ROOT, 'data', request.GET['path']), "/", False)
 
 urlpatterns = \
     [
@@ -36,6 +37,10 @@ urlpatterns = \
         re_path(r'^data/$', DatasetView.as_view()),
         re_path(r'^line/$', LineView.as_view()),
 
-        re_path(r'^content/$', get_content)
+        re_path(r'^content/$', get_content),
+
+        # virtual keyboard
+        path('virtual-keyboard/', ListVirtualKeyboardView.as_view()),
+        re_path(r'^virtual-keyboard/(?P<filename>[\w\.]+)/$', VirtualKeyboardView.as_view()),
 
     ] \

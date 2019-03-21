@@ -1,5 +1,7 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
+@import '~@angular/material/theming';
+
 .fill {
   flex: 1 1 auto;
 }
@@ -7,4 +9,8 @@
 body {
   padding: 0;
   margin: 0;
+}
+
+.mat-toolbar .mat-select {
+  font-size: 14px;
 }

@@ -4,11 +4,11 @@
       <mat-toolbar color="primary">
         <mat-toolbar-row>
           <span class="logo">OCR GT Annotator</span>
-          <a mat-button routerLink="/">Home</a>
-          <a mat-button routerLink="/imprint">Imprint</a>
+          <a mat-button [routerLink]="'/' | url">Home</a>
+          <a mat-button [routerLink]="'/imprint' | url">Imprint</a>
           <div class="fill"></div>
-          <a mat-button *ngIf="auth.isLoggedIn()" routerLink="/logout">Logout</a>
-          <a mat-button *ngIf="auth.isLoggedOut()" routerLink="/login">Login</a>
+          <a mat-button *ngIf="auth.isLoggedIn()" [routerLink]="'/logout' | url">Logout</a>
+          <a mat-button *ngIf="auth.isLoggedOut()" [routerLink]="'/login' | url">Login</a>
         </mat-toolbar-row>
       </mat-toolbar>
     </nav>

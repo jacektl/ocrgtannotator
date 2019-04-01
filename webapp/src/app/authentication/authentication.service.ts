@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {map, shareReplay} from 'rxjs/operators';
 import {BehaviorSubject} from 'rxjs';
 import {Router} from '@angular/router';
-import {api} from '../settings';
+import {api, url} from '../settings';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +22,7 @@ export class AuthenticationService {
     setInterval(() => { this.refreshToken(); }, 10 * 60 * 1000);  // server delta is 120 minutes
     this.loggedInObs.subscribe((loggedIn) => {
       // if (!loggedIn) { router.navigate(['login'], {queryParams: {redirect: this.router.url}}); }
-      if (!loggedIn) { router.navigate(['logout']); }
+      if (!loggedIn) { router.navigate(['/' + url('logout')]); }
     });
     this._token.asObservable().subscribe(value => {
       if (!value) {

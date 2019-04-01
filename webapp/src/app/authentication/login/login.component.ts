@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthenticationService} from '../authentication.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {filter} from 'rxjs/operators';
+import {url} from '../../settings';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ import {filter} from 'rxjs/operators';
 export class LoginComponent {
    form: FormGroup;
    error = '';
-   redirect = '/';
+   redirect = url('/');
 
   constructor(private fb: FormBuilder,
               private authService: AuthenticationService,

@@ -33,12 +33,14 @@ import { SimpleTypographyEditorComponent } from './editor/line-editor/line-edito
 import { OcrEditorComponent } from './editor/line-editor/line-editors/ocr-editor/ocr-editor.component';
 import {VirtualKeyboardComponent} from './common/virtual-keyboard/virtual-keyboard.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import {subdir, url} from './settings';
+import { SubdirUrlPipe } from './subdir-url.pipe';
 
 const appRoutes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'logout', component: LogoutComponent },
-  { path: 'imprint', component: ImprintComponent },
-  { path: '', component: EditorComponent },
+  { path: url('login'), component: LoginComponent },
+  { path: url('logout'), component: LogoutComponent },
+  { path: url('imprint'), component: ImprintComponent },
+  { path: url(''), component: EditorComponent },
 ];
 
 @NgModule({
@@ -59,6 +61,7 @@ const appRoutes: Routes = [
     SiblingSelectorComponent,
     SimpleTypographyEditorComponent,
     OcrEditorComponent,
+    SubdirUrlPipe,
   ],
   imports: [
     BrowserModule,

@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 class Database:
     @staticmethod
     def image_extensions():
-        return [".png", ".jpg", ".bmp"]
+        return ["nrm.png", ]
 
     @staticmethod
     def list_available():

@@ -37,9 +37,9 @@
     </div>
   </div>
   <div class="tools-overlay" [class.dragging]="isDragging" *ngIf="!disableEdit">
-    <div *ngIf="!isDragging">
+    <ng-container *ngIf="!isDragging">
       <input class="new-key-input" #newKeyInput autocomplete="off">
       <button mat-flat-button class="key" (click)="add(newKeyInput.value); newKeyInput.value = ''"><mat-icon>add</mat-icon></button>
-    </div>
+    </ng-container>
   </div>
 </div>

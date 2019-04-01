@@ -75,6 +75,7 @@ export class VirtualKeyboardComponent implements OnInit {
   }
 
   add(v: string) {
+    if (!v || v.length === 0) { return; }
     if (this.virtualKeyboard.rows.length === 0) {
       this.virtualKeyboard.rows.push([v]);
     } else {

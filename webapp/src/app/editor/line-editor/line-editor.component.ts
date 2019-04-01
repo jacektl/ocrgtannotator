@@ -14,6 +14,7 @@ export class LineEditorComponent implements OnInit {
   @Input() datasetCom: DatasetCom;
   @Input() file: string;
   @Input() font = '';
+  @Input() separators = new Array<string>(' ');
 
   @ViewChild(TextEditorComponent) textEditor: TextEditorComponent;
   @ViewChild(SingleTypographyEditorComponent) typographyEditor: SingleTypographyEditorComponent;

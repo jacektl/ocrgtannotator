@@ -35,7 +35,7 @@
   <mat-sidenav-content [style.font-size]="selectedFontSize + 'px'">
     <mat-card *ngFor="let d of (datasetCom | async).files" class="entry">
       <app-ocr-editor *ngIf="viewSelect === 'ocr'" [datasetCom]="datasetCom | async" [file]="d" [font]="selectedFont"></app-ocr-editor>
-      <app-simple-typography-editor *ngIf="viewSelect === 'typo'" [datasetCom]="datasetCom | async" [file]="d" [font]="selectedFont"></app-simple-typography-editor>
+      <app-simple-typography-editor *ngIf="viewSelect === 'typo'" [datasetCom]="datasetCom | async" [file]="d" [font]="selectedFont" [separators]="[' ', '-']"></app-simple-typography-editor>
     </mat-card>
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -16,6 +16,7 @@ export class TextEditorComponent implements OnInit, OnDestroy {
   @Input() file = '';
   @Input() ext = '.gt.txt';
   @Input() font = '';
+  @Input() separators = new Array<string>(' ');
 
   @ViewChild('input') input: ElementRef;
 
@@ -37,11 +38,11 @@ export class TextEditorComponent implements OnInit, OnDestroy {
 
   corrected = false;
 
-  private _sentence = new Sentence('');
+  private _sentence = new Sentence('', this.separators);
   get sentence() { return this._sentence; }
   updateSentence(s: string) {
     if (this._sentence.text !== s) {
-      this._sentence = new Sentence(s);
+      this._sentence = new Sentence(s, this.separators);
     }
   }
 

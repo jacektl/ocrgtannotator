@@ -13,4 +13,5 @@
   <mat-icon *ngIf="corrected" matSuffix>check</mat-icon>
   <mat-error *ngIf="inputFormControl.hasError('length')">Length does not match</mat-error>
   <mat-error *ngIf="inputFormControl.hasError('invalidCharacter')">Invalid character '{{ inputFormControl.getError('invalidCharacter') }}'.</mat-error>
+  <mat-error *ngIf="inputFormControl.hasError('invalidPos')">Invalid separators at positions '{{ inputFormControl.getError('invalidPos') }}'.</mat-error>
 </mat-form-field>

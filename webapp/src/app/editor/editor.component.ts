@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject} from 'rxjs';
 import {EditorService} from './editor.service';
 import {VirtualKeyboardComponent} from '../common/virtual-keyboard/virtual-keyboard.component';
+import {api} from '../settings';
 
 export class DatasetCom {
   public name = '';
@@ -46,7 +47,7 @@ export class EditorComponent implements OnInit {
   }
 
   onChange(path: string) {
-    this.http.post('/api/data/', {path}).subscribe(
+    this.http.post(api + '/data/', {path}).subscribe(
       data => {
         this.datasetCom.next(data as DatasetCom); console.log(data);
       }
@@ -60,7 +61,7 @@ export class EditorComponent implements OnInit {
 
   viewSelectionChanged(type: string) {
     if (type === 'ocr') {
-      this.virtualKeyboard.url = '/api/virtual-keyboard/default.json/';
+      this.virtualKeyboard.url = api + '/virtual-keyboard/default.json/';
       this.virtualKeyboard.disableEdit = false;
     } else {
       this.virtualKeyboard.url = null;

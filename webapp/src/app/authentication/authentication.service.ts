@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {map, shareReplay} from 'rxjs/operators';
 import {BehaviorSubject} from 'rxjs';
 import {Router} from '@angular/router';
+import {api} from '../settings';
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +34,7 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string ) {
-    return this.http.post<{token}>('/api/token-auth/', {username, password}).pipe(
+    return this.http.post<{token}>(api + '/token-auth/', {username, password}).pipe(
       map(res => this.setSession(res)),
       shareReplay(),
     );
@@ -59,7 +60,7 @@ export class AuthenticationService {
 
   private refreshToken() {
     if (this.isLoggedIn()) {
-      this.http.post<{token}>('/api/token-refresh/', {token: localStorage.getItem('id_token')}).subscribe(
+      this.http.post<{token}>(api + '/token-refresh/', {token: localStorage.getItem('id_token')}).subscribe(
         res => {
           this.setSession(res);
         },

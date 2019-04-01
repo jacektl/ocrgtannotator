@@ -3,6 +3,7 @@ import {DatasetCom} from '../editor.component';
 import {TextEditorComponent} from './single-line-editors/text-editor/text-editor.component';
 import {SingleTypographyEditorComponent} from './single-line-editors/typography-editor/single-typography-editor.component';
 import {EditorService} from '../editor.service';
+import {api} from '../../settings';
 
 @Component({
   selector: 'app-line-editor',
@@ -31,7 +32,7 @@ export class LineEditorComponent implements OnInit {
   }
 
   resourceUrl(s: string) {
-    return '/api/content?path=' + encodeURIComponent(this.datasetCom.path + '/' + s);
+    return api + '/content?path=' + encodeURIComponent(this.datasetCom.path + '/' + s);
   }
 
 

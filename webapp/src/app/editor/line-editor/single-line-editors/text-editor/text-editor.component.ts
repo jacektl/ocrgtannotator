@@ -4,6 +4,7 @@ import {EditorService} from '../../../editor.service';
 import {Subscription} from 'rxjs';
 import {Sentence} from '../../../../common/sentence';
 import {FormControl} from '@angular/forms';
+import {api} from '../../../../settings';
 
 @Component({
   selector: 'app-text-editor',
@@ -65,7 +66,7 @@ export class TextEditorComponent implements OnInit, OnDestroy {
   }
 
   reload() {
-    this.http.post<{content: string, exists: boolean}>('/api/line/', {path: this.path, file: this.file, ext: this.ext}).subscribe(
+    this.http.post<{content: string, exists: boolean}>(api + '/line/', {path: this.path, file: this.file, ext: this.ext}).subscribe(
       r => {
         this.content = r.content; this.corrected = r.exists;
         this.changeDetector.markForCheck();
@@ -81,7 +82,7 @@ export class TextEditorComponent implements OnInit, OnDestroy {
   }
 
   onBlur() {
-    this.http.put('/api/line/', {path: this.path, file: this.file, ext: this.ext, content: this.content}).subscribe(
+    this.http.put(api + '/line/', {path: this.path, file: this.file, ext: this.ext, content: this.content}).subscribe(
       r => {
         this.corrected = true;
         this.changeDetector.markForCheck();

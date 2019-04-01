@@ -3,6 +3,7 @@ import {LineEditorComponent} from '../../line-editor.component';
 import {Sentence} from '../../../../common/sentence';
 import {HttpClient} from '@angular/common/http';
 import {EditorService} from '../../../editor.service';
+import {api} from '../../../../settings';
 
 @Component({
   selector: 'app-simple-typography-editor',
@@ -33,7 +34,7 @@ export class SimpleTypographyEditorComponent extends LineEditorComponent impleme
 
   reload() {
     if (!this.datasetCom) { return; }
-    this.http.post<{content: string, exists: boolean}>('/api/line/', {path: this.datasetCom.path, file: this.basename(this.file), ext: this.gtExt}).subscribe(
+    this.http.post<{content: string, exists: boolean}>(api + '/line/', {path: this.datasetCom.path, file: this.basename(this.file), ext: this.gtExt}).subscribe(
       r => {
         this.sentence = new Sentence(r.content , this.separators);
         this.changeDetector.markForCheck();

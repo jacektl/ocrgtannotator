@@ -44,6 +44,7 @@ export class TextEditorComponent implements OnInit, OnDestroy {
   updateSentence(s: string) {
     if (this._sentence.text !== s) {
       this._sentence = new Sentence(s, this.separators);
+      this.content = this._sentence.text;
     }
   }
 

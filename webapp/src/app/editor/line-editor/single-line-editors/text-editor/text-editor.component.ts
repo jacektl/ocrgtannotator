@@ -17,7 +17,20 @@ export class TextEditorComponent implements OnInit, OnDestroy {
   @Input() file = '';
   @Input() ext = '.gt.txt';
   @Input() font = '';
-  @Input() separators = new Array<string>(' ');
+
+  private _separators = new Array<string>(' ');
+  @Input() get separators() { return this._separators; }
+  set separators(s: Array<string>) {
+    if (s !== this._separators) {
+      this._separators = s;
+      this.separatorsChanged();
+    }
+  }
+
+  protected separatorsChanged() {
+    this._sentence = new Sentence(this.sentence.text, this.separators);
+    this.changeDetector.markForCheck();
+  }
 
   @ViewChild('input') input: ElementRef;
 

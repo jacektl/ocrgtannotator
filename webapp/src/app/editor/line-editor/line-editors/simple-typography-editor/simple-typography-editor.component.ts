@@ -1,9 +1,10 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {LineEditorComponent} from '../../line-editor.component';
 import {Sentence} from '../../../../common/sentence';
 import {HttpClient} from '@angular/common/http';
 import {EditorService} from '../../../editor.service';
 import {api} from '../../../../settings';
+import {BehaviorSubject} from 'rxjs';
 
 @Component({
   selector: 'app-simple-typography-editor',
@@ -11,10 +12,10 @@ import {api} from '../../../../settings';
   styleUrls: ['./simple-typography-editor.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SimpleTypographyEditorComponent extends LineEditorComponent implements OnInit, OnChanges {
+export class SimpleTypographyEditorComponent extends LineEditorComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() separators: Array<string>;
   @Input() gtExt = '.gt.txt';
-  sentence = new Sentence('', this.separators);
+  sentence = new BehaviorSubject<Sentence>(new Sentence('', this.separators));
 
   constructor(
     private http: HttpClient,
@@ -25,6 +26,9 @@ export class SimpleTypographyEditorComponent extends LineEditorComponent impleme
   }
 
   ngOnInit() {
+  }
+
+  ngAfterViewInit(): void {
     this.reload();
   }
 
@@ -36,7 +40,7 @@ export class SimpleTypographyEditorComponent extends LineEditorComponent impleme
     if (!this.datasetCom) { return; }
     this.http.post<{content: string, exists: boolean}>(api + '/line/', {path: this.datasetCom.path, file: this.basename(this.file), ext: this.gtExt}).subscribe(
       r => {
-        this.sentence = new Sentence(r.content , this.separators);
+        this.sentence.next(new Sentence(r.content, this.separators));
         this.changeDetector.markForCheck();
       }
     );

@@ -5,6 +5,7 @@ import {HttpClient} from '@angular/common/http';
 import {Sentence} from '../../../../common/sentence';
 import {ErrorStateMatcher} from '@angular/material';
 import {FormControl, FormGroupDirective, NgForm} from '@angular/forms';
+import {BehaviorSubject, Subscription} from 'rxjs';
 
 
 export class TypoErrorStateMatcher implements ErrorStateMatcher {
@@ -24,14 +25,17 @@ export class TypoErrorStateMatcher implements ErrorStateMatcher {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SingleTypographyEditorComponent extends TextEditorComponent implements OnInit, OnChanges {
+  private subscriptions = new Subscription();
   @Input() typographyChars = 'ghp';
-  @Input() targetSentence: Sentence;
+  @Input() targetSentence: BehaviorSubject<Sentence>;
+
+  get curTarSen() { return this.targetSentence.getValue(); }
 
   errorStateMatcher = new TypoErrorStateMatcher();
 
   lengthValidator = (control: FormControl) => {
     const value = control.value as string;
-    if (this.targetSentence && value.length !== this.targetSentence.text.length) {
+    if (this.targetSentence && value.length !== this.curTarSen.text.length) {
       return {length: value.length};
     }
     return null;
@@ -40,7 +44,7 @@ export class SingleTypographyEditorComponent extends TextEditorComponent impleme
   invalidCharsValidator = (control: FormControl) => {
     const value = control.value as string;
     for (const c of value) {
-      if (this.typographyChars.indexOf(c) < 0 && this.targetSentence.separators.indexOf(c) < 0) {
+      if (this.typographyChars.indexOf(c) < 0 && this.curTarSen.separators.indexOf(c) < 0) {
         return {invalidCharacter: c};
       }
     }
@@ -50,16 +54,16 @@ export class SingleTypographyEditorComponent extends TextEditorComponent impleme
   separatorValidator = (control: FormControl) => {
     const value = control.value as string;
     if (!this.targetSentence || !value) { return null; }
-    const minL = Math.min(this.targetSentence.text.length, value.length);
+    const minL = Math.min(this.curTarSen.text.length, value.length);
     const invPos = [];
     for (let i = 0; i < minL; i++) {
-      const c = this.targetSentence.text[i];
+      const c = this.curTarSen.text[i];
       const v = value[i];
-      if (this.targetSentence.separators.indexOf(c) < 0 && this.targetSentence.separators.indexOf(v) < 0) {
+      if (this.curTarSen.separators.indexOf(c) < 0 && this.curTarSen.separators.indexOf(v) < 0) {
         continue;
       }
       if (c !== v) {
-        invPos.push(i + ' (' + this.targetSentence.wordAt(i - 1).text + ')');
+        invPos.push(i + ' (' + this.curTarSen.wordAt(i - 1).text + ')');
         break;
       }
     }
@@ -78,11 +82,15 @@ export class SingleTypographyEditorComponent extends TextEditorComponent impleme
 
   ngOnInit() {
     super.ngOnInit();
+    this.subscriptions.add(this.targetSentence.subscribe(v => {
+      this.separators = v.separators;
+      this.updateSentence(this.sentence.text);
+      this.inputFormControl.updateValueAndValidity();
+      this.changeDetector.markForCheck();
+    }));
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.separators = this.targetSentence.separators;
-    this.updateSentence(this.sentence.text);
   }
 
   keydown(e: KeyboardEvent) {
@@ -92,17 +100,17 @@ export class SingleTypographyEditorComponent extends TextEditorComponent impleme
       if (e.ctrlKey || this.sentence.separators.indexOf(e.key) >= 0) {
         this.insertAtCaret(e.key);
       } else {
-        let word = this.targetSentence.wordAt(this.caretPos);
+        let word = this.curTarSen.wordAt(this.caretPos);
         if (!word.isSeparator) {
           const remLength = word.endIdx - this.caretPos;
           // fill word and add separator
           this.insertAtCaret(e.key.repeat(Math.max(0, remLength)));
-          word = this.targetSentence.wordAt(this.caretPos);
+          word = this.curTarSen.wordAt(this.caretPos);
         }
         while (word.isSeparator) {
           // add spaces to next word
           this.insertAtCaret(word.text);
-          word = this.targetSentence.wordAt(this.caretPos);
+          word = this.curTarSen.wordAt(this.caretPos);
         }
       }
       e.preventDefault();

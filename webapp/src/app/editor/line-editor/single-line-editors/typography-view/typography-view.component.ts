@@ -27,6 +27,7 @@ class TypographyView {
 export class TypographyViewComponent extends TextViewComponent implements OnInit {
   @Input() typographySentence: Sentence;
 
+
   private typographyTypes = new Array<TypographyType>(
     new TypographyType('g', ''),
     new TypographyType('p', 'small'),
@@ -41,7 +42,7 @@ export class TypographyViewComponent extends TextViewComponent implements OnInit
     const l = Math.min(this.typographySentence.text.length, this.sentence.text.length)
     const out = new Array<TypographyView>();
     for (let i = 1; i <= l; i++) {
-      if (this.typographySentence.isSeparatorAt(i)) {
+      if (i < l && this.typographySentence.isSeparatorAt(i)) {
         continue;
       }
       if (i === l || currentType !== this.typographySentence.text[i]) {
@@ -59,7 +60,7 @@ export class TypographyViewComponent extends TextViewComponent implements OnInit
     for (const t of this.typographyTypes) {
       if (t.char === c) { return t; }
     }
-    return null;
+    return new TypographyType('', '');
   }
 
   constructor() {

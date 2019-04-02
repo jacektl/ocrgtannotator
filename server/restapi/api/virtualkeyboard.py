@@ -19,6 +19,14 @@ class VirtualKeyboardView(APIView):
         with open(path, 'r') as f:
             return Response(json.load(f))
 
+    def put(self, request, filename):
+        path = os.path.join(PRIVATE_MEDIA_ROOT, 'virtual_keyboards', filename)
+
+        with open(path, 'w') as f:
+            json.dump(json.loads(request.body), f, indent=2)
+
+        return Response()
+
 
 class ListVirtualKeyboardView(APIView):
     def get(self, request):

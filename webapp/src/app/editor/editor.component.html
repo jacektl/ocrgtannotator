@@ -30,7 +30,7 @@
 </mat-toolbar>
 <mat-sidenav-container class="container" autosize>
   <mat-sidenav position="end" [opened]="true" mode="side" fixedInViewport [fixedTopGap]="128">
-    <app-virtual-keyboard #virtualKeyboard></app-virtual-keyboard>
+    <app-virtual-keyboard #virtualKeyboard [upload]="true"></app-virtual-keyboard>
   </mat-sidenav>
   <mat-sidenav-content [style.font-size]="selectedFontSize + 'px'">
     <mat-card *ngFor="let d of (datasetCom | async).files" class="entry">

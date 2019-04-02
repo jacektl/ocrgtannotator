@@ -34,6 +34,7 @@ export class TextEditorComponent implements OnInit, OnDestroy {
       this.inputFormControl.setValue(s);
       this.updateSentence(this.content);
       this.corrected = false;
+      this.changeDetector.markForCheck();
     }
   }
 
@@ -45,6 +46,7 @@ export class TextEditorComponent implements OnInit, OnDestroy {
     if (this._sentence.text !== s) {
       this._sentence = new Sentence(s, this.separators);
       this.content = this._sentence.text;
+      this.changeDetector.markForCheck();
     }
   }
 
@@ -75,14 +77,14 @@ export class TextEditorComponent implements OnInit, OnDestroy {
     );
   }
 
-  onFocus() {
+  onFocus(e: MouseEvent) {
     this.focusSubscriptions.add(this.editor.virtualKeyboard.buttonClicked.subscribe(
       k => this.insertAtCaret(k)
     ));
     this.focussed = true;
   }
 
-  onBlur() {
+  onBlur(e: MouseEvent) {
     this.http.put(api + '/line/', {path: this.path, file: this.file, ext: this.ext, content: this.content}).subscribe(
       r => {
         this.corrected = true;

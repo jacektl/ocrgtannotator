@@ -5,7 +5,7 @@
          (focus)="onFocus($event)"
          (keydown)="keydown($event)"
          (keyup)="keyup($event)"
-         (input)="corrected = false"
+         (input)="inputChanged($event)"
          [formControl]="inputFormControl"
          [errorStateMatcher]="errorStateMatcher"
          [style.font-family]="font"

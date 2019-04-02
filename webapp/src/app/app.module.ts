@@ -35,6 +35,7 @@ import {VirtualKeyboardComponent} from './common/virtual-keyboard/virtual-keyboa
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {subdir, url} from './settings';
 import { SubdirUrlPipe } from './subdir-url.pipe';
+import { TypographyViewComponent } from './editor/line-editor/single-line-editors/typography-view/typography-view.component';
 
 const appRoutes: Routes = [
   { path: url('login'), component: LoginComponent },
@@ -62,6 +63,7 @@ const appRoutes: Routes = [
     SimpleTypographyEditorComponent,
     OcrEditorComponent,
     SubdirUrlPipe,
+    TypographyViewComponent,
   ],
   imports: [
     BrowserModule,

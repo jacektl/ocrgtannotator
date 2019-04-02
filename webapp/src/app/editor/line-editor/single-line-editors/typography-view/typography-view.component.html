@@ -1,0 +1,6 @@
+<div [style.font-family]="font">
+  <span *ngFor="let v of getTypographyView()"
+        [ngClass]="v.type.classes"
+        [innerHTML]="v.text"
+  ></span>
+</div>

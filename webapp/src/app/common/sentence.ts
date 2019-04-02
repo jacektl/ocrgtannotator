@@ -41,4 +41,9 @@ export class Sentence {
     }
     return new Word('', false, 0, -1);
   }
+
+  isSeparatorAt(idx: number): boolean {
+    if (idx < 0 || idx >= this.text.length) { return false; }
+    return this.separators.indexOf(this.text[idx]) >= 0;
+  }
 }

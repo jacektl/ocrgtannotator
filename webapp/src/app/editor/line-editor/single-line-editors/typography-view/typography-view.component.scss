@@ -1,0 +1,23 @@
+.small {
+  font-size: 80%;
+}
+
+.super {
+
+}
+
+
+.super, .sub {
+  font-size: 90%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+.super {
+  top: -0.5em;
+}
+
+.sub {
+  bottom: -0.25em;
+}

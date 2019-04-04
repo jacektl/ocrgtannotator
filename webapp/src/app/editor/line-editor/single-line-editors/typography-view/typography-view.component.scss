@@ -17,6 +17,9 @@
 .super {
   top: -0.5em;
 }
+.super.small {
+  font-size: 70%;
+}
 
 .sub {
   bottom: -0.25em;

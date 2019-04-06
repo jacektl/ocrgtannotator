@@ -27,6 +27,7 @@ class TypographyView {
 })
 export class TypographyViewComponent extends TextViewComponent implements OnInit {
   @Input() typographySentence: Sentence;
+  @Input() predTypographySentence: Sentence;
 
 
   private typographyTypes = new Array<TypographyType>(

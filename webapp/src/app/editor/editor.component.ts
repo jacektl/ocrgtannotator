@@ -31,6 +31,9 @@ export class EditorComponent implements OnInit {
   fonts = ['FreeSans', 'FreeSerif'];
   fontSizes = ['10', '12', '14', '17', '20', '25', '30'];
   selectedFontSize = '17';
+  showTitle = true;
+  showPrediction = false;
+  filter = '';
 
   @ViewChild(VirtualKeyboardComponent) virtualKeyboard: VirtualKeyboardComponent;
 

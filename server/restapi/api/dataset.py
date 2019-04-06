@@ -23,6 +23,7 @@ class LineView(APIView):
         database = Database(data.get('path', ''))
         file = database.file(data['file'], data['ext'])
         r = {'content': '', 'exists': file.exists()}
+        logger.debug('Requesting {}'.format(file.local_path))
         if file.exists():
             r['content'] = file.get_or_create_content()
 

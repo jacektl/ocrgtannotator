@@ -1,0 +1,21 @@
+.compare-view {
+  padding: 10px 0;
+  margin-top: 10px;
+  border-top: 2px solid rgba(0, 0, 0, 0.4);
+}
+
+.compare {
+
+}
+
+.delete {
+  color: darkred;
+  text-decoration: line-through;
+  margin-top: -1em;
+}
+
+.insert {
+  color: limegreen;
+  text-decoration: underline;
+  margin-top: 1em;
+}

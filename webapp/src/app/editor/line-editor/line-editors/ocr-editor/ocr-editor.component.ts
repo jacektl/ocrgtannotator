@@ -9,6 +9,7 @@ import {EditorService} from '../../../editor.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OcrEditorComponent extends LineEditorComponent implements OnInit {
+
   constructor(
     protected editor: EditorService,
   ) { super(editor); }

@@ -10,4 +10,8 @@
          [style.font-family]="font"
   >
   <mat-icon *ngIf="corrected" matSuffix>check</mat-icon>
+  <mat-hint>Ground Truth</mat-hint>
 </mat-form-field>
+<div *ngIf="predExists && compare">
+  <app-compare-view *ngIf="predExists" [gtSentence]="sentence" [predSentence]="predSentence"></app-compare-view>
+</div>

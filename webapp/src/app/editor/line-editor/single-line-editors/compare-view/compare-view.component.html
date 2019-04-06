@@ -1,0 +1,13 @@
+<div class="compare-view">
+  <div>
+    <span *ngFor="let d of diff()"
+          class="compare"
+          [class.insert]="d[0] === 1"
+          [class.delete]="d[0] === -1"
+    >{{ d[1] }}</span>
+  </div>
+  <mat-form-field class="full-width" *ngIf="showPredictionSentence">
+    <input matInput readonly [value]="predSentence.text">
+    <mat-hint>Prediction</mat-hint>
+  </mat-form-field>
+</div>

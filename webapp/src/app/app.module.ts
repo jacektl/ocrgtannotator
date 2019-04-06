@@ -10,10 +10,10 @@ import {
   MatButtonModule, MatCardModule,
   MatFormFieldModule,
   MatIconModule,
-  MatInputModule, MatPaginatorModule,
+  MatInputModule, MatListModule, MatPaginatorModule,
   MatSelectModule,
-  MatSidenavModule,
-  MatToolbarModule
+  MatSidenavModule, MatSlideToggleModule,
+  MatToolbarModule, MatTooltipModule
 } from '@angular/material';
 import {RouterModule, Routes} from '@angular/router';
 import {ImprintComponent} from './imprint/imprint.component';
@@ -36,6 +36,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import {subdir, url} from './settings';
 import { SubdirUrlPipe } from './subdir-url.pipe';
 import { TypographyViewComponent } from './editor/line-editor/single-line-editors/typography-view/typography-view.component';
+import { CompareViewComponent } from './editor/line-editor/single-line-editors/compare-view/compare-view.component';
 
 const appRoutes: Routes = [
   { path: url('login'), component: LoginComponent },
@@ -64,6 +65,7 @@ const appRoutes: Routes = [
     OcrEditorComponent,
     SubdirUrlPipe,
     TypographyViewComponent,
+    CompareViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -79,12 +81,15 @@ const appRoutes: Routes = [
     MatSelectModule,
     MatSidenavModule,
     MatPaginatorModule,
+    MatTooltipModule,
     DragDropModule,
     ReactiveFormsModule,
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: true }  // Debugging only
+      {enableTracing: true}  // Debugging only
     ),
+    MatSlideToggleModule,
+    MatListModule,
   ],
   bootstrap: [AppComponent],
   providers: [

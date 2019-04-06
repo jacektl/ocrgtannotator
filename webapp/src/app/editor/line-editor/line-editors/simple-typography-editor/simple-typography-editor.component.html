@@ -1,4 +1,17 @@
 <app-secured-image [src]="resourceUrl(file)" [alt]="resourceUrl(file)" class="gt-line-img"></app-secured-image>
 <app-text-view [font]="font" [sentence]="sentence | async" [charHighlightIdx]="typographyEditor.charHighlightPos" [wordHightlightIds]="typographyEditor.wordHighlightPos"></app-text-view>
-<app-typography-view [font]="font" [sentence]="sentence | async" [typographySentence]="typographyEditor.sentence"></app-typography-view>
-<app-single-typography-editor [font]="font" class="full-width" [path]="datasetCom.path" [file]="basename(file)" [ext]="'.typo.txt'" [targetSentence]="sentence"></app-single-typography-editor>
+<app-typography-view
+  [font]="font"
+  [sentence]="sentence | async"
+  [typographySentence]="typographyEditor.sentence"
+  [predTypographySentence]="(showPrediction && typographyEditor.predExists) ? typographyEditor.predSentence : null"
+></app-typography-view>
+<app-single-typography-editor
+  [font]="font"
+  class="full-width"
+  [path]="datasetCom.path"
+  [file]="basename(file)"
+  [ext]="'.typo.txt'"
+  [targetSentence]="sentence"
+  [predExt]="'.pred.typo.txt'"
+></app-single-typography-editor>

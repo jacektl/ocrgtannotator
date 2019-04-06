@@ -11,6 +11,29 @@ body {
   margin: 0;
 }
 
-.mat-toolbar .mat-select {
-  font-size: 14px;
+.mat-toolbar {
+  .mat-select, .mat-slide-toggle {
+    font-size: 14px;
+  }
+  .mat-form-field, .mat-input-element {
+    font-size: 18px;
+  }
 }
+
+.mat-toolbar > .mat-divider-vertical + * {
+  margin-right: 24px;
+  margin-left: -1px;
+}
+
+.mat-toolbar > * + .mat-divider-vertical {
+  margin-right: 16px;
+}
+
+.mat-toolbar > .mat-divider-vertical + * {
+  margin-left: 24px;
+}
+
+.mat-toolbar > .mat-divider-vertical {
+  margin-left: -1px;
+}
+

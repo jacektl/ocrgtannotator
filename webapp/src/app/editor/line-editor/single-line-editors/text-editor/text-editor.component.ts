@@ -17,6 +17,8 @@ export class TextEditorComponent implements OnInit, OnDestroy {
   @Input() file = '';
   @Input() ext = '.gt.txt';
   @Input() font = '';
+  @Input() compare = true;
+  @Input() predExt = '.pred.txt';
 
   private _separators = new Array<string>(' ');
   @Input() get separators() { return this._separators; }
@@ -29,6 +31,7 @@ export class TextEditorComponent implements OnInit, OnDestroy {
 
   protected separatorsChanged() {
     this._sentence = new Sentence(this.sentence.text, this.separators);
+    this.predSentence = new Sentence(this.predSentence.text, this.separators);
     this.changeDetector.markForCheck();
   }
 
@@ -53,6 +56,8 @@ export class TextEditorComponent implements OnInit, OnDestroy {
 
   corrected = false;
 
+  predExists = false;
+  predSentence = new Sentence('', this.separators);
   private _sentence = new Sentence('', this.separators);
   get sentence() { return this._sentence; }
   updateSentence(s: string) {
@@ -88,16 +93,23 @@ export class TextEditorComponent implements OnInit, OnDestroy {
         this.changeDetector.markForCheck();
       }
     );
+    this.http.post<{content: string, exists: boolean}>(api + '/line/', {path: this.path, file: this.file, ext: this.predExt}).subscribe(
+      r => {
+        this.predSentence = new Sentence(r.content, this.sentence.separators);
+        this.predExists = r.exists;
+        this.changeDetector.markForCheck();
+      }
+    );
   }
 
-  onFocus(e: MouseEvent) {
+  onFocus(e: FocusEvent) {
     this.focusSubscriptions.add(this.editor.virtualKeyboard.buttonClicked.subscribe(
       k => this.insertAtCaret(k)
     ));
     this.focussed = true;
   }
 
-  onBlur(e: MouseEvent) {
+  onBlur(e: FocusEvent) {
     this.http.put(api + '/line/', {path: this.path, file: this.file, ext: this.ext, content: this.content}).subscribe(
       r => {
         this.corrected = true;

@@ -32,10 +32,6 @@ export class LineEditorComponent implements OnInit {
     return this.textEditor.corrected;
   }
 
-  show() {
-    return true;
-  }
-
   protected virtualKeyboard = this.editor.virtualKeyboard;
 
   basename = (s: string) => s.split('.')[0];

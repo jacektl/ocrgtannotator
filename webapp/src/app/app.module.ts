@@ -37,6 +37,7 @@ import {subdir, url} from './settings';
 import { SubdirUrlPipe } from './subdir-url.pipe';
 import { TypographyViewComponent } from './editor/line-editor/single-line-editors/typography-view/typography-view.component';
 import { CompareViewComponent } from './editor/line-editor/single-line-editors/compare-view/compare-view.component';
+import { EditorCardComponent } from './editor/line-editor/editor-card/editor-card.component';
 
 const appRoutes: Routes = [
   { path: url('login'), component: LoginComponent },
@@ -66,6 +67,7 @@ const appRoutes: Routes = [
     SubdirUrlPipe,
     TypographyViewComponent,
     CompareViewComponent,
+    EditorCardComponent,
   ],
   imports: [
     BrowserModule,

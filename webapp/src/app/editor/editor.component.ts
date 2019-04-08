@@ -4,20 +4,10 @@ import {BehaviorSubject} from 'rxjs';
 import {EditorService} from './editor.service';
 import {VirtualKeyboardComponent} from '../common/virtual-keyboard/virtual-keyboard.component';
 import {api} from '../settings';
-
-export class DatasetCom {
-  public name = '';
-  constructor(
-    public path = '',
-    public label = '',
-    public remove_path = '',
-    public parent = '',
-    public files = new Array<string>(),
-    public children = new Array<string>(),
-    public siblings = new Array<string>(),
-  ) {
-  }
-}
+import {LineEditorComponent} from './line-editor/line-editor.component';
+import {DatasetCom} from '../common/dataset-communication';
+import {EditorCardComponent} from './line-editor/editor-card/editor-card.component';
+import {MatSlideToggleChange} from '@angular/material';
 
 @Component({
   selector: 'app-editor',
@@ -34,6 +24,7 @@ export class EditorComponent implements OnInit {
   showTitle = true;
   showPrediction = false;
   filter = '';
+  hideCorrect = false;
 
   @ViewChild(VirtualKeyboardComponent) virtualKeyboard: VirtualKeyboardComponent;
 
@@ -57,9 +48,18 @@ export class EditorComponent implements OnInit {
     );
   }
 
+  showCard(d: string, card: EditorCardComponent) {
+    if (this.hideCorrect && card.isCorrect() && card.isSaved()) { return false; }
+    return ((this.filter && this.filter.length > 0) ? d.indexOf(this.filter) >= 0 : true);
+  }
+
   changeToSibling(label: string) {
     const path = this.datasetCom.getValue().path;
     this.onChange(path.substring(0, path.lastIndexOf('/') + 1) + label);
+  }
+
+  predictionToggled(event: MatSlideToggleChange) {
+    if (!event.checked) { this.hideCorrect = false; }
   }
 
   viewSelectionChanged(type: string) {

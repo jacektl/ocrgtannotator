@@ -37,7 +37,9 @@
       <mat-toolbar-row>
         <mat-slide-toggle [(ngModel)]="showTitle">Show title</mat-slide-toggle>
         <mat-divider [vertical]="true"></mat-divider>
-        <mat-slide-toggle [(ngModel)]="showPrediction">Show prediction</mat-slide-toggle>
+        <mat-slide-toggle [(ngModel)]="showPrediction" (change)="predictionToggled($event)">Show prediction</mat-slide-toggle>
+        <mat-divider [vertical]="true"></mat-divider>
+        <mat-slide-toggle [(ngModel)]="hideCorrect" [disabled]="!showPrediction">Hide correct</mat-slide-toggle>
         <div class="fill"></div>
         <mat-form-field>
           <mat-icon>search</mat-icon>
@@ -45,13 +47,15 @@
         </mat-form-field>
       </mat-toolbar-row>
     </mat-toolbar>
-    <ng-container *ngFor="let d of (datasetCom | async).files">
-      <mat-card *ngIf="(filter && filter.length > 0) ? d.indexOf(filter) >= 0 : true" class="entry">
-        <mat-card-subtitle *ngIf="showTitle">{{d}}</mat-card-subtitle>
-        <app-ocr-editor *ngIf="viewSelect === 'ocr'" [datasetCom]="datasetCom | async" [file]="d" [font]="selectedFont" [showPrediction]="showPrediction"></app-ocr-editor>
-        <app-simple-typography-editor *ngIf="viewSelect === 'typo'" [datasetCom]="datasetCom | async" [file]="d" [font]="selectedFont" [separators]="[' ', '-']" [showPrediction]="showPrediction"></app-simple-typography-editor>
-      </mat-card>
-    </ng-container>
+    <app-editor-card #card *ngFor="let d of (datasetCom | async).files" [class.hide]="!showCard(d, card)"
+                     [file]="d"
+                     [datasetCom]="datasetCom | async"
+                     [selectedFont]="selectedFont"
+                     [showPrediction]="showPrediction"
+                     [showTitle]="showTitle"
+                     [hideCorrect]="hideCorrect"
+                     [viewSelect]="viewSelect"
+    ></app-editor-card>
   </mat-sidenav-content>
 </mat-sidenav-container>
 

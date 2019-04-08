@@ -1,0 +1,5 @@
+<mat-card class="entry" >
+  <mat-card-subtitle *ngIf="showTitle">{{ file }}</mat-card-subtitle>
+  <app-ocr-editor #ocrEditor *ngIf="viewSelect === 'ocr'" [datasetCom]="datasetCom" [file]="file" [font]="selectedFont" [showPrediction]="showPrediction" [hideCorrect]="hideCorrect"></app-ocr-editor>
+  <app-simple-typography-editor #typoEditor *ngIf="viewSelect === 'typo'" [datasetCom]="datasetCom" [file]="file" [font]="selectedFont" [separators]="[' ', '-']" [showPrediction]="showPrediction" [hideCorrect]="hideCorrect"></app-simple-typography-editor>
+</mat-card>

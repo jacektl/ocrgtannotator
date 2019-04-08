@@ -54,6 +54,11 @@ export class TextEditorComponent implements OnInit, OnDestroy {
     }
   }
 
+  isCorrect() {
+    if (!this.predSentence || !this.sentence) { return false; }
+    return this.predSentence.text === this.sentence.text;
+  }
+
   corrected = false;
 
   predExists = false;

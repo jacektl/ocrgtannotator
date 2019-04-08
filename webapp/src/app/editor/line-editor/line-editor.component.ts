@@ -22,17 +22,22 @@ export class LineEditorComponent implements OnInit {
   @ViewChild(TextEditorComponent) textEditor: TextEditorComponent;
   @ViewChild(SingleTypographyEditorComponent) typographyEditor: SingleTypographyEditorComponent;
 
+  protected virtualKeyboard = this.editor.virtualKeyboard;
+
+  get editorComp() {
+    return this.textEditor || this.typographyEditor;
+  }
+
   isCorrect() {
-    if (!this.textEditor) { return false; }
-    return this.textEditor.isCorrect();
+    if (!this.editorComp) { return false; }
+    return this.editorComp.isCorrect();
   }
 
   isSaved() {
-    if (!this.textEditor) { return true; }
-    return this.textEditor.corrected;
+    if (!this.editorComp) { return true; }
+    return this.editorComp.corrected;
   }
 
-  protected virtualKeyboard = this.editor.virtualKeyboard;
 
   basename = (s: string) => s.split('.')[0];
 

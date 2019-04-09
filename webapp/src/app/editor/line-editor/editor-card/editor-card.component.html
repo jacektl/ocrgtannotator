@@ -1,5 +1,18 @@
 <mat-card class="entry" >
   <mat-card-subtitle *ngIf="showTitle">{{ file }}</mat-card-subtitle>
   <app-ocr-editor #ocrEditor *ngIf="viewSelect === 'ocr'" [datasetCom]="datasetCom" [file]="file" [font]="selectedFont" [showPrediction]="showPrediction" [hideCorrect]="hideCorrect"></app-ocr-editor>
-  <app-simple-typography-editor #typoEditor *ngIf="viewSelect === 'typo'" [datasetCom]="datasetCom" [file]="file" [font]="selectedFont" [separators]="[' ', '-']" [showPrediction]="showPrediction" [hideCorrect]="hideCorrect"></app-simple-typography-editor>
+  <app-simple-typography-editor
+    #typo1Editor *ngIf="viewSelect === 'typo1'"
+    [typoExt]="'.typo.txt'"
+    [predTypoExt]="'.pred.typo.txt'"
+    [typographyChars]="'gph'"
+    [datasetCom]="datasetCom" [file]="file" [font]="selectedFont" [separators]="[' ', '-']"
+    [showPrediction]="showPrediction" [hideCorrect]="hideCorrect"></app-simple-typography-editor>
+  <app-simple-typography-editor
+    #typo2Editor *ngIf="viewSelect === 'typo2'"
+    [typoExt]="'.typo2.txt'"
+    [predTypoExt]="'.pred.typo2.txt'"
+    [typographyChars]="'biscI'"
+    [datasetCom]="datasetCom" [file]="file" [font]="selectedFont" [separators]="[' ', '-']"
+    [showPrediction]="showPrediction" [hideCorrect]="hideCorrect"></app-simple-typography-editor>
 </mat-card>

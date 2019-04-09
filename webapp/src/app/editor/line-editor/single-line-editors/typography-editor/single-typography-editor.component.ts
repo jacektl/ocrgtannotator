@@ -26,7 +26,7 @@ export class TypoErrorStateMatcher implements ErrorStateMatcher {
 })
 export class SingleTypographyEditorComponent extends TextEditorComponent implements OnInit, OnChanges {
   private subscriptions = new Subscription();
-  @Input() typographyChars = 'ghp';
+  @Input() typographyChars: string;
   @Input() targetSentence: BehaviorSubject<Sentence>;
 
   get curTarSen() { return this.targetSentence.getValue(); }

@@ -17,10 +17,11 @@ export class EditorCardComponent implements OnInit {
   @Input() hideCorrect = false;
 
   @ViewChild('ocrEditor') ocrEditor: LineEditorComponent;
-  @ViewChild('typoEditor') typoEditor: LineEditorComponent;
+  @ViewChild('typo1Editor') typo1Editor: LineEditorComponent;
+  @ViewChild('typo2Editor') typo2Editor: LineEditorComponent;
 
   get editor(): LineEditorComponent {
-    return this.ocrEditor || this.typoEditor;
+    return this.ocrEditor || this.typo1Editor || this.typo2Editor;
   }
 
   isSaved() {

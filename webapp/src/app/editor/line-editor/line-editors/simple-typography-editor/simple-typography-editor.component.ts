@@ -15,6 +15,9 @@ import {BehaviorSubject} from 'rxjs';
 export class SimpleTypographyEditorComponent extends LineEditorComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() separators: Array<string>;
   @Input() gtExt = '.gt.txt';
+  @Input() typoExt = '.typo.txt';
+  @Input() predTypoExt = '.pred.typo.txt';
+  @Input() typographyChars: string;
   sentence = new BehaviorSubject<Sentence>(new Sentence('', this.separators));
 
   constructor(

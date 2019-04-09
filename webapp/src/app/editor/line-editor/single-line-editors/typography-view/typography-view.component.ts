@@ -39,7 +39,7 @@ export class TypographyViewComponent extends TextViewComponent implements OnInit
     new TypographyType('i', 'italics'),
     new TypographyType('s', 'sparse'),
     new TypographyType('c', 'caps'),
-    new TypographyType('I', 'bold italics'),
+    new TypographyType('I', 'italics sparse'),
   );
 
 

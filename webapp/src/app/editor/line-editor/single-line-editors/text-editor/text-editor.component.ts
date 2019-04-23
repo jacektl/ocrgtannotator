@@ -94,13 +94,19 @@ export class TextEditorComponent implements OnInit, OnDestroy {
   reload() {
     this.http.post<{content: string, exists: boolean}>(api + '/line/', {path: this.path, file: this.file, ext: this.ext}).subscribe(
       r => {
-        this.content = r.content; this.corrected = r.exists;
+        if (r.exists) {
+          this.content = r.content;
+        }
+        this.corrected = r.exists;
         this.changeDetector.markForCheck();
       }
     );
     this.http.post<{content: string, exists: boolean}>(api + '/line/', {path: this.path, file: this.file, ext: this.predExt}).subscribe(
       r => {
         this.predSentence = new Sentence(r.content, this.sentence.separators);
+        if (!this.corrected && this.content.length === 0) {
+          this.content = this.predSentence.text;
+        }
         this.predExists = r.exists;
         this.changeDetector.markForCheck();
       }

@@ -14,6 +14,9 @@ It also supports typography.
 sudo apt install nodejs npm python3-pip virtualenv libsm6 libxrender1 libfontconfig1
 ```
 
+### Windows
+Download and install [nodejs](https://nodejs.org) (LTS recommended), [python](https://www.python.org/downloads/) (add phyton to path and instal pip), 
+
 ## Setup
 
 Clone the repository
@@ -24,6 +27,14 @@ cd webapp
 npm install -g @angular/cli
 npm install
 ng build
+```
+
+#### Additional steps for Windows users
+Since windows does by default not support symlinks you need to manually copy the webapp to the server any time you call `ng build`:
+```bash
+cd webapp
+rd .\..\server\webapp\static\webapp
+xcopy .\dist\webapp  ..\server\webapp\static\webapp\ /s /e /y
 ```
 
 ### Prepare the server
@@ -51,6 +62,8 @@ git pull origin master
 cd webapp && ng build && cd ..
 cd server && python manage.py collectstatic --noinput
 ```
+
+As windows user, do not forget to copy the webapp to `server/webapp/static` before calling `collectstatic`.
 
 ## File deployment
 Add your files in a arbitrary directory structure under `server/storage`.

@@ -66,7 +66,7 @@ cd server && python manage.py collectstatic --noinput
 As windows user, do not forget to copy the webapp to `server/webapp/static` before calling `collectstatic`.
 
 ## File deployment
-Add your files in a arbitrary directory structure under `server/storage`.
+Add your files in a arbitrary directory structure under `server/storage/data`.
 Each line image must be a single `.png` or `.jpg` file and the basename may not contain additional dots.
 The GT are labeled `basename + ".gt.txt"`.
 (Also see Modifying the GT data)

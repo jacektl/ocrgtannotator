@@ -2,6 +2,7 @@ from server.settings import PRIVATE_MEDIA_ROOT, PRIVATE_MEDIA_URL, BASE_DIR
 import os
 from typing import List
 
+import unicodedata
 import logging
 
 logger = logging.getLogger(__name__)
@@ -69,9 +70,9 @@ class DatasetFile:
 
     def get_or_create_content(self):
         with open(self.local_path, 'r') as f:
-            return f.read().strip()
+            return unicodedata.normalize('NFC', f.read().strip())
 
     def set_content(self, s: str):
         with open(self.local_path, 'w') as f:
-            f.write(s)
+            f.write(unicodedata.normalize('NFC', s))
 

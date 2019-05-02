@@ -1,0 +1,12 @@
+name: ocrgtannotator
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python
+  - pip
+  - django>2
+  - djangorestframework
+  - djangorestframework-jwt
+  - pip:
+    - djangorestframework-stubs
